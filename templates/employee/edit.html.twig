@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Employee{% endblock %}
+
+{% block body %}
+    <h1>Edit Employee</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.firstname) }}
+
+    {{ form_row(form.lastname) }}
+
+    <h3>A compléter pour mettre à jour : </h3>
+    {{ form_row(form.plainPassword) }}
+
+    <h3>Image actuelle :</h3>
+
+    <img src="{{ asset('profile_uploads/' ~ employee.photo) }}">
+
+    {{ form_row(form.photo) }}
+
+
+
+    {{ form_end(form) }}
+
+
+    <a href="{{ path('app_employee_index') }}">back to list</a>
+
+    {{ include('employee/_delete_form.html.twig') }}
+{% endblock %}

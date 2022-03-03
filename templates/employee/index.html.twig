@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employee index{% endblock %}
+
+{% block body %}
+    <h1>Employee index</h1>
+
+
+    <div class="row">
+        {% for employee in employees %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ asset('profile_uploads/' ~ employee.photo ) }}" class="card-img-top" alt="Photo de  {{ employee.lastname }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ employee.firstname|upper }} {{ employee.lastname }}</h5>
+                <p class="card-text">{{ employee.sector }} - {{ employee.email }}</p>
+                <a  href="{{ path('app_employee_show', {'id': employee.id}) }}" class="btn btn-primary">Voir plus</a>
+                <a  href="mailto: {{ employee.email }}" class="btn btn-primary">Envoyer un mail</a>
+                {% if app.user.hasRole('ROLE_DIRECTION') %}
+                    <a  href="{{ path('app_employee_edit', {'id': employee.id}) }}" class="btn btn-danger">Editer</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if app.user.hasRole('ROLE_DIRECTION') %}
+    <a href="{{ path('app_employee_new') }}">Create new</a>
+    {% endif %}
+{% endblock %}

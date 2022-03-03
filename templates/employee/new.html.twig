@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Employee{% endblock %}
+
+{% block body %}
+    <h1>Create new Employee</h1>
+
+
+    <h1>Edit Employee</h1>
+
+    {% include 'employee/_form.html.twig' %}
+  {#  {{ form_start(form) }}
+
+    {{ form_row(form.firstname) }}
+
+    {{ form_row(form.lastname) }}
+
+    {{ form_row(form.plainPassword, {'required': true}) }}
+
+    {{ form_end(form) }}#}
+
+
+
+    <a href="{{ path('app_employee_index') }}">back to list</a>
+{% endblock %}
